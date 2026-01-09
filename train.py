@@ -4,7 +4,8 @@ import joblib
 from sklearn.model_selection import train_test_split
 #from sklearn.linear_model import LinearRegression
 #from sklearn.linear_model import Ridge
-from sklearn.linear_model import Lasso
+#from sklearn.linear_model import Lasso
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
 
@@ -14,7 +15,9 @@ X = data.drop("quality", axis=1)
 y = data["quality"]
 
 scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+#X_scaled = scaler.fit_transform(X)
+X_scaled = X.values
+
 
 X_train, X_test, y_train, y_test = train_test_split(
     X_scaled, y, test_size=0.2, random_state=42
@@ -22,7 +25,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 #model = LinearRegression()
 #model = Ridge(alpha=1.0)
-model = Lasso(alpha=0.01)
+#model = Lasso(alpha=0.01)
+model = RandomForestRegressor(n_estimators=100, random_state=42)
 
 
 model.fit(X_train, y_train)
