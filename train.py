@@ -26,7 +26,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 #model = LinearRegression()
 #model = Ridge(alpha=1.0)
 #model = Lasso(alpha=0.01)
-model = RandomForestRegressor(n_estimators=100, random_state=42)
+#model = RandomForestRegressor(n_estimators=100, random_state=42)
+model = RandomForestRegressor(
+    n_estimators=200,
+    max_depth=10,
+    random_state=42
+)
 
 
 model.fit(X_train, y_train)
